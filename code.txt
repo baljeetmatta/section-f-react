@@ -1,0 +1,22 @@
+1. Top level Tag
+<Students>
+    <Student>
+        <Name></Name>
+        <Roll></Roll>
+    </Student>
+    <Student>
+        <Name></Name>
+        <Roll></Roll>
+    </Student>
+    
+</Students>
+2. Closing of Tag - Compulsory
+<b>asdaskl dsa
+3. Case Sensitive
+<b>. </B>
+4. Nesting of Tags
+<b><i>  </b></i>
+<b><i></i></b>
+5. Attributes
+<body bgcolor="light gray"
+  bgcolor="red"
