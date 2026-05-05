@@ -8,11 +8,14 @@ import FormData from './components/FormData.tsx'
 import ReactForm from './ReactForm.tsx'
 import HookForm from './HookForm.tsx'
 import YupHook from './YupHook.tsx'
-
+import { Provider } from 'react-redux'
+import store from "./reduxStore.ts"
+import ProductDetails from './ProductDetails.tsx'
+import Products from './Products.tsx'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-   
-    <YupHook />
-   
+   <Provider store={store}>
+    <Products />
+   </Provider>
   </StrictMode>,
 )
