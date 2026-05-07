@@ -1,20 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-import GreetClass from './GreetClass'
-import StateFunction from './StateFunction'
-import Counter from './Counter'
-import CounterClass from './CounterClass'
-import Dashboard from './components/Dashboard'
-import { UserContext, type UserType } from './UserContext'
-import { Link, NavLink, Route, Routes, useNavigate } from 'react-router-dom'
-import Home from './components/Home'
-import About from './components/About'
-import Contact from './components/Contact'
-import ParentElement from './components/ParentElement'
+import { lazy, Suspense  } from 'react'
 
+import './App.css'
+import { Route, Routes } from 'react-router-dom'
+import HomePage from './components/HomePage'
+import WithoutMemo from './WithoutMemo'
+import Posts from './Posts'
+//import Abt from './components/Abt'
+const Abt=lazy(()=>import("./components/Abt"))
 // function App() {
 //   const [count, setCount] = useState(0)
 
@@ -186,54 +178,71 @@ import ParentElement from './components/ParentElement'
 
 // export default App
 
-function App() {
-  const navigate= useNavigate();
+// function App() {
+//   const navigate= useNavigate();
 
-  // let data="Code";
-  let obj: UserType = {
-    name: "Code",
-    age: 10
-  }
-  const clickHandler=()=>{
+//   // let data="Code";
+//   let obj: UserType = {
+//     name: "Code",
+//     age: 10
+//   }
+//   const clickHandler=()=>{
 
-    navigate("/about",{state:{name:"Code"}});
+//     navigate("/about",{state:{name:"Code"}});
     
 
-  }
-  return (
-    <>
-      <div>
-        {/* <GreetClass name="Code"/> */}
-        {/* <StateFunction/> */}
-        {/* <Dashboard user={data}/> */}
-        {/* <UserContext.Provider value={obj}>
-    <Dashboard/>
-    </UserContext.Provider> */}
-        {/* <a href="/">Home</a> | <a href="/about">About</a> | <a href="/contact">Contact </a> */}
-        <NavLink to="/">Home</NavLink> | <NavLink to="/about">About</NavLink> | <NavLink to="/contact">Contact</NavLink>
+//   }
+//   return (
+//     <>
+//       <div>
+//         {/* <GreetClass name="Code"/> */}
+//         {/* <StateFunction/> */}
+//         {/* <Dashboard user={data}/> */}
+//         {/* <UserContext.Provider value={obj}>
+//     <Dashboard/>
+//     </UserContext.Provider> */}
+//         {/* <a href="/">Home</a> | <a href="/about">About</a> | <a href="/contact">Contact </a> */}
+//         <NavLink to="/">Home</NavLink> | <NavLink to="/about">About</NavLink> | <NavLink to="/contact">Contact</NavLink>
 
-<button onClick={clickHandler}>
-  About
-</button>
+// <button onClick={clickHandler}>
+//   About
+// </button>
 
-        <Routes>
-          {/* <Route path="/" element={<div>Home Page</div>} /> */}
+//         <Routes>
+//           {/* <Route path="/" element={<div>Home Page</div>} /> */}
 
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          {/* <Route path="/products/" element={<ParentElement/>}>
-              <Route path="elect" element={<div>Electronic Products</div>}/>
-               <Route path="fashion" element={<div>Fashion Products</div>}/>
-                <Route path="food" element={<div>Food Products</div>}/>
-            </Route> */}
+//           <Route path="/" element={<Home />} />
+//           <Route path="/about" element={<About />} />
+//           <Route path="/contact" element={<Contact />} />
+//           {/* <Route path="/products/" element={<ParentElement/>}>
+//               <Route path="elect" element={<div>Electronic Products</div>}/>
+//                <Route path="fashion" element={<div>Fashion Products</div>}/>
+//                 <Route path="food" element={<div>Food Products</div>}/>
+//             </Route> */}
 
-              <Route path="/products/:category/:subcategory" element={<ParentElement/>}/>
+//               <Route path="/products/:category/:subcategory" element={<ParentElement/>}/>
 
-        </Routes>
+//         </Routes>
 
-      </div>
+//       </div>
 
+//     </>
+//   )
+
+// }
+
+function App()
+{
+
+  return ( <>
+
+  <Suspense fallback={<h3>Loading...</h3>}>
+    <Routes>
+      <Route path="/" element={<Posts/>}/>
+      <Route path="/about" element={<Abt/>}/>
+
+    </Routes>
+    </Suspense>
     </>
   )
 
